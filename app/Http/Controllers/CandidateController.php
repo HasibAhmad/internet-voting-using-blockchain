@@ -10,12 +10,12 @@ class CandidateController extends Controller
     public function index(Candidate $model)
     {
         $candidates = Candidate::all();
-        return view('pages.candidates_list', compact('candidates'));
+        return view('pages.candidates.candidates_list', compact('candidates'));
     }
 
     public function create()
     {
-        return view('pages.candidate_create');
+        return view('pages.candidates.candidate_create');
     }
 
 
@@ -27,7 +27,7 @@ class CandidateController extends Controller
 
     public function edit(Candidate $candidate)
     {
-        return view('pages.candidate_edit', compact('candidate'));
+        return view('pages.candidates.candidate_edit', compact('candidate'));
     }
 
     public function update(Request $request, Candidate $candidate)
