@@ -18,30 +18,32 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-{{--      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">--}}
-{{--        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">--}}
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#electionManagement" aria-expanded="true">
 {{--          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
-{{--          <p>{{ __('Laravel Examples') }}--}}
-{{--            <b class="caret"></b>--}}
-{{--          </p>--}}
-{{--        </a>--}}
-{{--        <div class="collapse show" id="laravelExample">--}}
-{{--          <ul class="nav">--}}
-{{--            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">--}}
-{{--              <a class="nav-link" href="{{ route('profile.edit') }}">--}}
-{{--                <span class="sidebar-mini"> UP </span>--}}
-{{--                <span class="sidebar-normal">{{ __('User profile') }} </span>--}}
-{{--              </a>--}}
-{{--            </li>--}}
-{{--            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">--}}
-{{--              <a class="nav-link" href="{{ route('user.index') }}">--}}
-{{--                <span class="sidebar-mini"> UM </span>--}}
-{{--                <span class="sidebar-normal"> {{ __('User Management') }} </span>--}}
-{{--              </a>--}}
-{{--            </li>--}}
-{{--          </ul>--}}
-{{--        </div>--}}
-{{--      </li>--}}
+            <i class="material-icons">how_to_vote</i>
+          <p>{{ __('Election Management') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse show" id="electionManagement">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+              <a class="nav-link" href="#">
+                <span class="sidebar-mini"> MV </span>
+                <span class="sidebar-normal">{{ __('Mail Voters') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+{{--                <a class="nav-link" href="{{ route('user.index') }}">--}}
+                <a class="nav-link" href="#">
+                <span class="sidebar-mini"> SE </span>
+                <span class="sidebar-normal"> {{ __('Start Election') }} </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
 {{--      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">--}}
 {{--        <a class="nav-link" href="{{ route('table') }}">--}}
 {{--          <i class="material-icons">content_paste</i>--}}
