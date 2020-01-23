@@ -25,7 +25,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-12 text-right">
-{{--                                    <a href="{{ route('voter.create') }}" class="btn btn-sm btn-primary">{{ __('Add voter') }}</a>--}}
+                                    <a href="{{ route('candidate.create') }}" class="btn btn-sm btn-primary">{{ __('Add Candidate') }}</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -69,7 +69,7 @@
                                                         @csrf
                                                         @method('delete')
 
-                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('voter.edit', $candidate) }}" data-original-title="" title="">
+                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('candidate.edit', $candidate) }}" data-original-title="" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>
                                                         </a>
