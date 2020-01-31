@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\blockChain;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -48,16 +49,15 @@ class UserController extends Controller
         return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
-    /**
-     * Remove the specified user from storage
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function destroy(User  $user)
     {
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+    }
+
+    public function testBlockChain() {
+        $blockChain = new blockChain();
+        return $blockChain->test();
     }
 }

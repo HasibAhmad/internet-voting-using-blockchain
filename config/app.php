@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Blockavel\LaraBlockIo\LaraBlockIoServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -206,6 +206,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'LaraBlockIo' => 'Blockavel\LaraBlockIo\LaraBlockIoFacade',
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
@@ -225,6 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
 
     ],
 
