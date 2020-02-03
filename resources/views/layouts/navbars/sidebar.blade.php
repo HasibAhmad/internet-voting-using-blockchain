@@ -18,6 +18,31 @@
             <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
+{{--      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">--}}
+{{--          <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">--}}
+{{--              <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
+{{--              <i class="material-icons">people</i>--}}
+{{--              <p>{{ __('RA Management') }}--}}
+{{--                  <b class="caret"></b>--}}
+{{--              </p>--}}
+{{--          </a>--}}
+{{--          <div class="collapse show" id="laravelExample">--}}
+{{--              <ul class="nav">--}}
+{{--                  <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">--}}
+{{--                      <a class="nav-link" href="{{ route('profile.edit') }}">--}}
+{{--                          <span class="sidebar-mini"> RP </span>--}}
+{{--                          <span class="sidebar-normal">{{ __('RA profile') }} </span>--}}
+{{--                      </a>--}}
+{{--                  </li>--}}
+{{--                  <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">--}}
+{{--                      <a class="nav-link" href="{{ route('user.index') }}">--}}
+{{--                          <span class="sidebar-mini"> RM </span>--}}
+{{--                          <span class="sidebar-normal"> {{ __('RA Management') }} </span>--}}
+{{--                      </a>--}}
+{{--                  </li>--}}
+{{--              </ul>--}}
+{{--          </div>--}}
+{{--      </li>--}}
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#electionManagement" aria-expanded="true">
 {{--          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>--}}
@@ -68,10 +93,10 @@
                <p>{{ __('Cadidates') }}</p>
           </a>
       </li>
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
+      <li class="nav-item{{ $activePage == 'blockchain' ? ' active' : '' }}">
+        <a class="nav-link" href="/blockchain">
           <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Demo 1') }}</p>
+          <p>{{ __('BlockChain Management') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">

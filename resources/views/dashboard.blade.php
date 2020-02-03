@@ -4,6 +4,37 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
+          <div class="col-lg-3">
+              <div class="card card-stats">
+                  <div class="card-header card-header-rose">
+                      <h3 class="card-title">
+                          BlockChain Network
+                      </h3>
+                  </div>
+                  <div class="card-body">
+                      <h3 class="card-title">
+                          {{$network}}
+                      </h3>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-3">
+              <div class="card card-stats">
+                  <div class="card-header card-header-rose">
+                      <h3 class="card-title">
+                          Available Balance
+                      </h3>
+                  </div>
+                  <div class="card-body">
+                      <h3 class="card-title">
+                          {{$networkBalance}}
+                          <i class="material-icons">monetization_on</i>
+                      </h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">

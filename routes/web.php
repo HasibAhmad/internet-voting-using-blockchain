@@ -27,9 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 //		return view('pages.typography');
 //	})->name('typography');
 
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
+	Route::get('blockchain', function () {
+		return view('pages.blockchain');
+	})->name('blockchain');
 
 	Route::get('map', function () {
 		return view('pages.map');
@@ -50,11 +50,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::get('test', 'UserController@testBlockChain');
+    Route::get('testBlockChain', 'UserController@testBlockChain');
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('voter', 'VoterController');
 });
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('candidate', 'CandidateController');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('blockchain', 'BlockchainController');
+    Route::get('getAddress', 'BlockchainController@getAddress');
 });

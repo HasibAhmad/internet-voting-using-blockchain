@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\blockChain;
+use Blockavel\LaraBlockIo\LaraBlockIo;
+
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -16,11 +14,12 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\View\View
      */
     public function index()
     {
-        return view('dashboard');
+        $block = new LaraBlockIo();
+        $network = $block->getNetwork();
+        $networkBalance = $block->getAvailableBalance();
+        return view('dashboard', ['network' => $network, 'networkBalance' => $networkBalance]);
     }
 }

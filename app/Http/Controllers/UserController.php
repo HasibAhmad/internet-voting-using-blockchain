@@ -31,13 +31,6 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    /**
-     * Update the specified user in storage
-     *
-     * @param  \App\Http\Requests\UserRequest  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(UserRequest $request, User  $user)
     {
         $hasPassword = $request->get('password');
@@ -55,9 +48,25 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
-
-    public function testBlockChain() {
-        $blockChain = new blockChain();
-        return $blockChain->test();
-    }
+//
+//    public function testBlockChain() {
+//        $blockChain = new blockChain();
+//        $blockChainTest =  $blockChain->getBlock();
+//        //you can call all method ob blockhain on the above variable
+//        $myBalance = $blockChainTest->getBalanceInfo();
+//        $network = $myBalance->data->network;
+//        $networkBalance = $myBalance->data->available_balance;
+//        return view('pages.blockchain', ['network' => $network, 'networkBalance' => $networkBalance]);
+//
+////        $myNetwork = $blockChainTest->getNetwork();
+////        $myAddress = $blockChainTest->getAddresses();
+////        $myBalance = $blockChainTest->getBalanceInfo();
+////        $blockInfo = [
+////            'Network' => $myNetwork,
+////            'Address' => $myAddress,
+////            'Balance' => $myBalance
+////        ];
+////        return response()->json($blockInfo);
+////        return response(["blockChainTest" => $blockChainTest->status]);
+//    }
 }

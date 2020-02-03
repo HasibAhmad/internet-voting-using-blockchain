@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class blockChain extends Model
 {
-    public function test()
+    public function getBlock()
     {
         $block = new LaraBlockIo();
-        $info = $block->getBalanceInfo();
-        dd($info);
-        return $info;
+        return $block;
+    }
+
+    public static function demo()
+    {
+        return 'method called';
     }
 }
