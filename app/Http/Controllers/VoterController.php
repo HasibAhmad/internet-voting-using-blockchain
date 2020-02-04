@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendVoterConfirmation;
 use App\Voter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class VoterController extends Controller
 {
@@ -23,6 +25,12 @@ class VoterController extends Controller
     public function store(Request $request, Voter $model)
     {
         $model->create($request->all());
+        /*
+         * send mail to the user
+         */
+        $url = 'http://localhost:8000';
+        Mail::to($request->email)->send(new sendVoterConfirmation($request->name, $url));
+
         return redirect()->route('voter.index')->withStatus(__('Voter successfully created.'));
     }
 
