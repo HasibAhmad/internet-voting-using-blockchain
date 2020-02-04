@@ -1,5 +1,5 @@
 @auth()
-    @include('dashboard')
+{{--    @include('dashboard')--}}
 @endauth
 @guest()
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => '', 'title' => __('IVUB')])

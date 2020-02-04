@@ -5,8 +5,8 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal" data-toggle='tooltip' data-placement='right' title='Internet Voting Using Blockchain'>
-      <span class="h2">{{ __('IVuB') }}<br></span>
+    <a href="http://localhost:8000/home" class="simple-text logo-normal" data-toggle='tooltip' data-placement='right' title='Internet Voting Using Blockchain'>
+      <span class="h2 text-rose">{{ __('IVuB') }}<br></span>
         <small class="text-muted h6 text-capitalize">Internet Voting Using Blockchain</small>
     </a>
   </div>

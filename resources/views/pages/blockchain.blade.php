@@ -33,9 +33,6 @@
                                     <th>
                                         {{ __('networkBalance') }}
                                     </th>
-                                    <th class="text-right">
-                                        {{ __('Actions') }}
-                                    </th>
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -64,7 +61,17 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="/getAddress" class="btn btn-sm btn-primary">{{ __('Get New Address') }}</a>
+                                    <form method="POST" action="{{url('createAddress')}}">
+                                        {{ csrf_field() }}
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input type="text" class="form-control" id="newAddress" name="newAddress" placeholder="Enter new address label">
+                                            </div>
+                                            <div class="col-2">
+                                                <button class="btn btn-primary" type="submit">Create address</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -78,9 +85,6 @@
                                     </th>
                                     <th>
                                         {{ __('Label') }}
-                                    </th>
-                                    <th class="text-right">
-                                        {{ __('Actions') }}
                                     </th>
                                     </thead>
                                     <tbody>

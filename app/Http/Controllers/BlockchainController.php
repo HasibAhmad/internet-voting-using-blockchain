@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\blockChain;
 use Blockavel\LaraBlockIo\LaraBlockIo;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class BlockchainController extends Controller
 {
@@ -21,24 +22,29 @@ class BlockchainController extends Controller
     public function getAddress()
     {
         $block = new LaraBlockIo();
-//        $block->createAddress('default');
         $blockInfo = $block->getAddressesInfoWithoutBalances();
         $addresses = $blockInfo->data->addresses;
-//        dd($addresses[0]->address);
         return $addresses;
     }
 
-    public function store(Request $request)
+    public function createAddress(Request $request)
     {
-        //
+        $block = new LaraBlockIo();
+        $label = $request['newAddress'];
+        $block->createAddress($label);
+        return redirect('blockchain')->withStatus(__('Address successfully created.'));
     }
 
-    public function update(Request $request, $id)
-    {
-        //
+    public function withdrawFromLabelsToLabels(Request $request) {
+        $amounts = $request['amounts'];
+        $from_labels = $request['from_labels'];
+        $to_labels = $request['from_labels'];
+        $nonce = $request['nonce'];
+        $block = new LaraBlockIo();
+        $withdraw = $block->withdrawFromLabelsToLabels($amounts, $from_labels, $to_labels, $nonce);
+        dd($withdraw);
+        return redirect('blockchain')->withStatus(__('amounts withdrawn successfully.'));
     }
-    public function destroy($id)
-    {
-        //
-    }
+
+
 }

@@ -13,7 +13,8 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('home');
+//    return view('welcome');
 });
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
@@ -65,4 +66,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('blockchain', 'BlockchainController');
     Route::get('getAddress', 'BlockchainController@getAddress');
+    Route::post('createAddress', 'BlockchainController@createAddress');
 });
