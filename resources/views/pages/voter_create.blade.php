@@ -50,12 +50,12 @@
                         </div>
                       </div>
                       <div class="row">
-                          <label class="col-sm-2 col-form-label">{{ __('Private Key') }}</label>
+                          <label class="col-sm-2 col-form-label">{{ __('Public Key') }}</label>
                           <div class="col-sm-7">
-                              <div class="form-group{{ $errors->has('private_key') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('private_key') ? ' is-invalid' : '' }}" name="private_key" id="input-name" type="text" placeholder="{{ __('Private Key') }}" required="true" aria-required="true"/>
-                                  @if ($errors->has('private_key'))
-                                      <span id="private_key-error" class="error text-danger" for="input-name">{{ $errors->first('private_key') }}</span>
+                              <div class="form-group{{ $errors->has('public_key') ? ' has-danger' : '' }}">
+                                  <input class="form-control{{ $errors->has('public_key') ? ' is-invalid' : '' }}" name="public_key" id="input-name" type="text" placeholder="{{ __('public Key') }}" required="true" aria-required="true"/>
+                                  @if ($errors->has('public_key'))
+                                      <span id="public_key-error" class="error text-danger" for="input-name">{{ $errors->first('public_key') }}</span>
                                   @endif
                               </div>
                           </div>

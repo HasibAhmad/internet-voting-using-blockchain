@@ -11,6 +11,6 @@ class Voter extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'private_key', 'bitcoin_address', 'network',
+        'name', 'email', 'public_key', 'bitcoin_address', 'network', 'verify_token',
     ];
 }

@@ -38,7 +38,7 @@
                                         {{ __('Email') }}
                                     </th>
                                     <th>
-                                        {{ __('Private Key') }}
+                                        {{ __('Public Key') }}
                                     </th>
                                     <th>
                                         {{ __('Bitcoin Address') }}
@@ -60,7 +60,7 @@
                                                 {{ $voter->email }}
                                             </td>
                                             <td>
-                                                {{ $voter->private_key }}
+                                                {{ $voter->public_key }}
                                             </td>
                                             <td>
                                                 {{ $voter->bitcoin_address }}

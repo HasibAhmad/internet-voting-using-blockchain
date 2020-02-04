@@ -17,6 +17,8 @@ Route::get('/', function () {
 //    return view('welcome');
 });
 
+Route::get( 'voter/verify/{code}', 'VoterController@verify');
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
