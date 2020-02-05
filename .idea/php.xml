@@ -94,6 +94,7 @@
       <path value="$PROJECT_DIR$/vendor/block_io-php/block_io-php" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
       <path value="$PROJECT_DIR$/vendor/phpseclib/mcrypt_compat" />
+      <path value="$PROJECT_DIR$/vendor/bitcoin-php/bitcoin-ecdsa" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />

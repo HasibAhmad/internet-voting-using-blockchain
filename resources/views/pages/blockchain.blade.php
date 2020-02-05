@@ -31,7 +31,7 @@
                                         {{ __('network') }}
                                     </th>
                                     <th>
-                                        {{ __('networkBalance') }}
+                                        {{ __('Network Balance') }}
                                     </th>
                                     </thead>
                                     <tbody>

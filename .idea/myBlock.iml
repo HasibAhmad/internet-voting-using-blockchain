@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/app" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bitcoin-php/bitcoin-ecdsa" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/block_io-php/block_io-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/blockavel/lara-block-io" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-frontend-presets/material-dashboard" />
