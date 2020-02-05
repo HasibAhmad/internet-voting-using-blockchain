@@ -11,6 +11,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-frontend-presets/material-dashboard" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpseclib/mcrypt_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpseclib/phpseclib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/pikirasa" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
