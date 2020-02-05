@@ -17,8 +17,8 @@ class CreateVotersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('private_key');
-            $table->string('public_key');
+            $table->longText('private_key');
+            $table->longText('public_key');
             $table->string('bitcoin_address');
             $table->integer('network');
             $table->string('verify_token');

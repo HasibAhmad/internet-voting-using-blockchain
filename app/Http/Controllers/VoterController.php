@@ -6,6 +6,7 @@ use App\Mail\sendVoterConfirmation;
 use App\Voter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use phpseclib\Crypt\RSA;
 
 class VoterController extends Controller
 {
@@ -26,8 +27,19 @@ class VoterController extends Controller
         $voter->name = $request->name;
         $voter->email = $request->email;
 //        $voter->private_key = $request->private_key;
-        $voter->private_key = 'default';
-        $voter->public_key = $request->get('public_key');
+
+        $rsa = new RSA();
+        $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
+        $rsa->setPublicKeyFormat(RSA::PUBLIC_FORMAT_PKCS1);
+        $rsa->setHash('sha256');
+        $rsa->setComment('ivub');
+        $key_pair = $rsa->createKey(1024);
+
+//        $fingerprint = $rsa->loadKey($privateKey);
+//        $keyFingerprint = $rsa->getPublicKeyFingerprint();
+
+        $voter->private_key = $key_pair["privatekey"];;
+        $voter->public_key = $key_pair["publickey"];
         $voter->bitcoin_address = $request->bitcoin_address;
         $voter->network = $request->network;
         $voter->verify_token = sha1(uniqid($voter->private_key, true));
@@ -47,8 +59,8 @@ class VoterController extends Controller
         $voter->name = $request->get('name');
         $voter->email = $request->get('email');
 //        $voter->private_key = $request->get('private_key');
-        $voter->private_key = 'default';
-        $voter->public_key = $request->get('public_key');
+//        $voter->private_key = 'default';
+//        $voter->public_key = $request->get('public_key');
         $voter->bitcoin_address = $request->get('bitcoin_address');
         $voter->network = $request->get('network');
         $voter->save();
