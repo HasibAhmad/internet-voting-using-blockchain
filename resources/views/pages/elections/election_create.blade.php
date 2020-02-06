@@ -1,18 +1,18 @@
-@extends('layouts.app', ['activePage' => 'voter', 'titlePage' => __('Add Voter')])
+@extends('layouts.app', ['activePage' => 'election', 'titlePage' => __('Add Election')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('voter.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('election.store') }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('post')
 
               <div class="card ">
                   <div class="card-header card-header-primary">
-                      <h4 class="card-title">{{ __('Add Voter') }}</h4>
-                      <p class="card-category">{{ __('Voter information') }}</p>
+                      <h4 class="card-title">{{ __('Add election') }}</h4>
+                      <p class="card-category">{{ __('election information') }}</p>
                   </div>
                   <div class="card-body ">
                       @if (session('status'))
@@ -39,34 +39,39 @@
                           </div>
                       </div>
                       <div class="row">
-                        <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
+                        <label class="col-sm-2 col-form-label">{{ __('Status') }}</label>
                         <div class="col-sm-7">
-                          <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" required />
-                            @if ($errors->has('email'))
-                              <span id="email-error" class="error text-danger" for="input-email">{{ $errors->first('email') }}</span>
+                          <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
+{{--                            <input class="form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" name="status" id="input-status" type="status" placeholder="{{ __('status') }}" required />--}}
+                            <select class="form-control" data-style="btn btn-link" id="exampleFormControlSelect1">
+                                <option>pending</option>
+                                <option>running</option>
+                                <option>completed</option>
+                            </select>
+                            @if ($errors->has('status'))
+                              <span id="status-error" class="error text-danger" for="input-status">{{ $errors->first('status') }}</span>
                             @endif
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                          <label class="col-sm-2 col-form-label">{{ __('Bitcoin Address') }}</label>
+                          <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                           <div class="col-sm-7">
-                              <div class="form-group{{ $errors->has('bitcoin_address') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('bitcoin_address') ? ' is-invalid' : '' }}" name="bitcoin_address" id="input-bitcoin_address" type="text" placeholder="{{ __('Bitcoin Address') }}" required="true" aria-required="true"/>
-                                  @if ($errors->has('bitcoin_address'))
-                                      <span id="bitcoin_address-error" class="error text-danger" for="input-bitcoin_address">{{ $errors->first('bitcoin_address') }}</span>
+                              <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                  <input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-description" type="text" placeholder="{{ __('Description') }}" required="true" aria-required="true"/>
+                                  @if ($errors->has('description'))
+                                      <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
                                   @endif
                               </div>
                           </div>
                       </div>
                       <div class="row">
-                          <label class="col-sm-2 col-form-label">{{ __('Network') }}</label>
+                          <label class="col-sm-2 col-form-label">{{ __('Voting Date') }}</label>
                           <div class="col-sm-7">
-                              <div class="form-group{{ $errors->has('network') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('network') ? ' is-invalid' : '' }}" name="network" id="input-network" type="text" placeholder="{{ __('Network') }}" required="true" aria-required="true"/>
-                                  @if ($errors->has('network'))
-                                      <span id="network-error" class="error text-danger" for="input-network">{{ $errors->first('network') }}</span>
+                              <div class="form-group{{ $errors->has('voting_date') ? ' has-danger' : '' }}">
+                                  <input type="datetime-local" class="form-control{{ $errors->has('voting_date') ? ' is-invalid' : '' }}" name="voting_date" id="input-voting_date" type="text" required="true" aria-required="true"/>
+                                  @if ($errors->has('voting_date'))
+                                      <span id="voting_date-error" class="error text-danger" for="input-voting_date">{{ $errors->first('voting_date') }}</span>
                                   @endif
                               </div>
                           </div>

@@ -22,13 +22,6 @@ Route::get( 'voter/verify/{code}', 'VoterController@verify');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-//	Route::get('table-list', function () {
-//		return view('pages.table_list');
-//	})->name('table');
-
-//	Route::get('typography', function () {
-//		return view('pages.typography');
-//	})->name('typography');
 
 	Route::get('blockchain', function () {
 		return view('pages.blockchain');
@@ -69,4 +62,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('blockchain', 'BlockchainController');
     Route::get('getAddress', 'BlockchainController@getAddress');
     Route::post('createAddress', 'BlockchainController@createAddress');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('election', 'ElectionController');
+    Route::get('startElection/{election}', 'ElectionController@startElection')->name('startElection');
 });

@@ -19,9 +19,9 @@ class CandidateController extends Controller
     }
 
 
-    public function store(Request $request, Candidate $model)
+    public function store(Request $request, Candidate $candidate)
     {
-        $model->create($request->all());
+        $candidate->create($request->all());
         return redirect()->route('candidate.index')->withStatus(__('Candidate successfully created.'));
     }
 

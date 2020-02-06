@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'voter', 'titlePage' => __('Voters List')])
+@extends('layouts.app', ['activePage' => 'election', 'titlePage' => __('Election List')])
 
 @section('content')
     <div class="content">
@@ -7,8 +7,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">{{ __('Voters') }}</h4>
-                            <p class="card-category"> {{ __('Here you can manage voters') }}</p>
+                            <h4 class="card-title ">{{ __('Election') }}</h4>
+                            <p class="card-category"> {{ __('Here you can manage elections') }}</p>
                         </div>
                         <div class="card-body">
                             @if (session('status'))
@@ -25,7 +25,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('voter.create') }}" class="btn btn-sm btn-primary">{{ __('Add voter') }}</a>
+                                    <a href="{{ route('election.create') }}" class="btn btn-sm btn-primary">{{ __('Add election') }}</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -35,53 +35,49 @@
                                         {{ __('Name') }}
                                     </th>
                                     <th>
-                                        {{ __('Email') }}
+                                        {{ __('Status') }}
                                     </th>
                                     <th>
-                                        {{ __('Public Key') }}
+                                        {{ __('Description') }}
                                     </th>
                                     <th>
-                                        {{ __('Bitcoin Address') }}
-                                    </th>
-                                    <th>
-                                        {{ __('Network') }}
+                                        {{ __('Voting Date') }}
                                     </th>
                                     <th class="text-right">
                                         {{ __('Actions') }}
                                     </th>
                                     </thead>
                                     <tbody>
-                                    @foreach($voters as $voter)
+                                    @foreach($elections as $election)
                                         <tr>
                                             <td>
-                                                {{ $voter->name }}
+                                                {{ $election->name }}
                                             </td>
                                             <td>
-                                                {{ $voter->email }}
-                                            </td>
-                                            <td style=" width: 65em">
-                                                <p style="overflow-x: auto; white-space: nowrap; width: 65em">
-                                                    {{ $voter->public_key }}
-                                                </p>
+                                                {{ $election->status }}
                                             </td>
                                             <td>
-                                                {{ $voter->bitcoin_address }}
+                                                {{ $election->description }}
                                             </td>
                                             <td>
-                                                {{ $voter->network }}
+                                                {{ $election->voting_date }}
                                             </td>
                                             <td class="td-actions text-right">
-                                                @if ($voter->id)
-{{--                                                    @if ($voter->id != auth()->id())--}}
-                                                    <form action="{{ route('voter.destroy', $voter) }}" method="post">
+                                                @if ($election->id)
+{{--                                                    @if ($election->id != auth()->id())--}}
+                                                    <form action="{{ route('election.destroy', $election) }}" method="post">
                                                         @csrf
                                                         @method('delete')
 
-                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('voter.edit', $voter) }}" data-original-title="" title="">
+                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('startElection', $election) }}" data-original-title="start election" title="">
+                                                            <i class="material-icons">settings_power</i>
+                                                            <div class="ripple-container"></div>
+                                                        </a>
+                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('election.edit', $election) }}" data-original-title="edit" title="">
                                                             <i class="material-icons">edit</i>
                                                             <div class="ripple-container"></div>
                                                         </a>
-                                                        <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this voter?") }}') ? this.parentElement.submit() : ''">
+                                                        <button type="button" class="btn btn-danger btn-link" data-original-title="" title="delete" onclick="confirm('{{ __("Are you sure you want to delete this election?") }}') ? this.parentElement.submit() : ''">
                                                             <i class="material-icons">close</i>
                                                             <div class="ripple-container"></div>
                                                         </button>
