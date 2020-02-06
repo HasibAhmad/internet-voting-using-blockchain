@@ -7,6 +7,7 @@ use App\Voter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\RSA;
+use BitcoinPHP\BitcoinECDSA\BitcoinECDSA;
 
 class VoterController extends Controller
 {
@@ -26,7 +27,6 @@ class VoterController extends Controller
     {
         $voter->name = $request->name;
         $voter->email = $request->email;
-//        $voter->private_key = $request->private_key;
 
         $rsa = new RSA();
         $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
@@ -34,13 +34,17 @@ class VoterController extends Controller
         $rsa->setHash('sha256');
         $rsa->setComment('ivub');
         $key_pair = $rsa->createKey(1024);
-
 //        $fingerprint = $rsa->loadKey($privateKey);
 //        $keyFingerprint = $rsa->getPublicKeyFingerprint();
-
-        $voter->private_key = $key_pair["privatekey"];;
+        $voter->private_key = $key_pair["privatekey"];
         $voter->public_key = $key_pair["publickey"];
+
+        $bitcoinECDSA = new BitcoinECDSA();
+        $bitcoinECDSA->setPrivateKey((integer)$key_pair["privatekey"]);
+//        dd($bitcoinECDSA->getAddress());
+        $address = $bitcoinECDSA->getUncompressedAddress();
         $voter->bitcoin_address = $request->bitcoin_address;
+
         $voter->network = $request->network;
         $voter->verify_token = sha1(uniqid($voter->private_key, true));
         $voter->save();
@@ -79,6 +83,10 @@ class VoterController extends Controller
         if ($voter) {
             $voter->verified = true;
             $voter->save();
+
+            if (s) {
+
+            }
             return view('pages.voting_page');
         } else {
             return response()->json('Wrong token!', '404');

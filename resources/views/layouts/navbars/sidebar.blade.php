@@ -1,3 +1,9 @@
+<style>
+    .sidebar[data-color="purple"] li.active>a {
+        background-color: #9b27b0a1;
+        box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    }
+</style>
 <div class="sidebar" data-color="purple" data-background-color="black" data-image="{{ asset('material') }}/img/sidebar-3.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
