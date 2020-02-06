@@ -11,8 +11,9 @@ class CreateElectionsTable extends Migration
         Schema::create('elections', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->boolean('is_started')->default(0);
+            $table->enum('status', ['pending', 'running', 'completed']);
             $table->string('description');
+            $table->dateTime('voting_date');
             $table->timestamps();
         });
     }

@@ -99,6 +99,12 @@
                <p>{{ __('Cadidates') }}</p>
           </a>
       </li>
+      <li class="nav-item{{ $activePage == 'election' ? ' active' : '' }}">
+          <a class="nav-link", href="/election">
+              <i class="material-icons">people</i>
+              <p>{{ __('Elections') }}</p>
+          </a>
+      </li>
       <li class="nav-item{{ $activePage == 'blockchain' ? ' active' : '' }}">
         <a class="nav-link" href="/blockchain">
           <i class="material-icons">bubble_chart</i>

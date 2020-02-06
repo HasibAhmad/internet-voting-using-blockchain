@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Election;
 use App\Mail\sendVoterConfirmation;
 use App\Voter;
 use Illuminate\Http\Request;
@@ -83,11 +84,17 @@ class VoterController extends Controller
         if ($voter) {
             $voter->verified = true;
             $voter->save();
-
-            if (s) {
-
+            $election = Election::find(2);
+            if ($election->status == 'pending') {
+                return view('pages.voting_not_started');
             }
-            return view('pages.voting_page');
+            elseif ($election->status == 'running') {
+                return view('pages.voting_started_page');
+            }
+            else
+            {
+                return view('pages.voting_completed_page');
+            }
         } else {
             return response()->json('Wrong token!', '404');
         }
