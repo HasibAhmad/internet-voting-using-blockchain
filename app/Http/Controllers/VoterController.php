@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Candidate;
 use App\Election;
 use App\Mail\sendVoterConfirmation;
 use App\Voter;
@@ -29,8 +30,8 @@ class VoterController extends Controller
         $voter->name = $request->name;
         $voter->email = $request->email;
         $voter->election_id = $request->election_id;
-        
-        $key_pair = $this->generate_key_pairs();
+
+        $key_pair = GenerateKeysController::generate_keys();
         $voter->private_key = $key_pair["privatekey"];
         $voter->public_key = $key_pair["publickey"];
 
@@ -69,30 +70,35 @@ class VoterController extends Controller
         return redirect()->route('voter.index')->withStatus(__('Voter successfully deleted.'));
     }
 
-    public function generate_key_pairs() {
-        $rsa = new RSA();
-        $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
-        $rsa->setPublicKeyFormat(RSA::PUBLIC_FORMAT_PKCS1);
-        $rsa->setHash('sha256');
-        $rsa->setComment('ivub');
-        $key_pair = $rsa->createKey(1024);
-        return $key_pair;
-    }
-
     public function verify($code)
     {
         $voter = Voter::where('verify_token', '=', $code)->first();
+        $voter_private_key = $voter->private_key;
+        $voter_public_key = $voter->public_key;
         if ($voter) {
             $voter->verified = true;
             $voter->save();
             $election_id = $voter->election_id;
             $election = Election::find($election_id);
             $election_date = $election->voting_date;
+            $candidates = Candidate::all()->where('election_id', $election_id);
             if ($election->status == 'pending') {
-                return view('pages.voting.voting_not_started', compact('election_date'));
+                return view('pages.voting.voting_not_started',
+                    [
+                        'election_date' => $election_date,
+                        'voter_private_key' => $voter_private_key,
+                        'voter_public_key' => $voter_public_key
+                    ]);
             }
             elseif ($election->status == 'running') {
-                return view('pages.voting.voting_started_page');
+                return view('pages.voting.voting_started_page',
+                    [
+                        'election_date' => $election_date,
+                        'voter_private_key' => $voter_private_key,
+                        'voter_public_key' => $voter_public_key,
+                        'candidates' => $candidates
+                    ]
+                );
             }
             else
             {

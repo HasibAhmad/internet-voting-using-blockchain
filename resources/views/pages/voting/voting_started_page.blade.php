@@ -28,21 +28,43 @@
                     <h1 class="card-title text-center">{{ __('Welcome to IVUB voting portal') }}</h1>
                 </div>
                 <div class="card-body">
-                    <p class="card-text"> {{ __('Today is Voting day,') }}
-                        <span class="card-text text-rose">
+                    <div class="row card-text col">
+                        <p class="card-text"> {{ __('Today is Voting day,') }}
+                            <span class="card-text text-rose">
                             hooray!
                         </span>
-                    </p>
+                        </p>
+                    </div>
                     <form>
                         <div class="row">
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="First name">
+                                <label class="title"> {{ __('Private Key') }} </label>
+                                <label> {{ $voter_private_key }} </label>
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name">
+                                <label class="title"> {{ __('Public Key') }} </label>
+                                <label> {{ $voter_public_key }} </label>
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <label class="title"> {{ __('Select your candidate') }} </label>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-control selectpicker" data-style="btn btn-link"
+                                    id="exampleFormControlSelect1">
+                                @foreach($candidates as $candidate)
+                                    <option>{{ $candidate->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col">
+                            <a href="{{ route('voter.create') }}" class="card-text">
+                                <button class="btn btn-primary btn-round">{{ __('Vote') }}</button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

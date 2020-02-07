@@ -47,11 +47,14 @@ class ElectionController extends Controller
 
     public function startElection(Election $election)
     {
-        if ($election->status == "pending" || $election->status == "completed") {
+        if ($election->status == "pending") {
             $election->status = 'running';
             $election->update();
         } elseif ($election->status == "running") {
             $election->status = 'completed';
+            $election->update();
+        } else {
+            $election->status = 'pending';
             $election->update();
         }
         return redirect()->route('election.index')->withStatus(__('Election updated successfully.'));
