@@ -29,15 +29,8 @@ class VoterController extends Controller
         $voter->name = $request->name;
         $voter->email = $request->email;
         $voter->election_id = $request->election_id;
-
-        $rsa = new RSA();
-        $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
-        $rsa->setPublicKeyFormat(RSA::PUBLIC_FORMAT_PKCS1);
-        $rsa->setHash('sha256');
-        $rsa->setComment('ivub');
-        $key_pair = $rsa->createKey(1024);
-//        $fingerprint = $rsa->loadKey($privateKey);
-//        $keyFingerprint = $rsa->getPublicKeyFingerprint();
+        
+        $key_pair = $this->generate_key_pairs();
         $voter->private_key = $key_pair["privatekey"];
         $voter->public_key = $key_pair["publickey"];
 
@@ -64,9 +57,6 @@ class VoterController extends Controller
     {
         $voter->name = $request->get('name');
         $voter->email = $request->get('email');
-//        $voter->private_key = $request->get('private_key');
-//        $voter->private_key = 'default';
-//        $voter->public_key = $request->get('public_key');
         $voter->bitcoin_address = $request->get('bitcoin_address');
         $voter->network = $request->get('network');
         $voter->save();
@@ -79,22 +69,34 @@ class VoterController extends Controller
         return redirect()->route('voter.index')->withStatus(__('Voter successfully deleted.'));
     }
 
+    public function generate_key_pairs() {
+        $rsa = new RSA();
+        $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
+        $rsa->setPublicKeyFormat(RSA::PUBLIC_FORMAT_PKCS1);
+        $rsa->setHash('sha256');
+        $rsa->setComment('ivub');
+        $key_pair = $rsa->createKey(1024);
+        return $key_pair;
+    }
+
     public function verify($code)
     {
         $voter = Voter::where('verify_token', '=', $code)->first();
         if ($voter) {
             $voter->verified = true;
             $voter->save();
-            $election = Election::find(2);
+            $election_id = $voter->election_id;
+            $election = Election::find($election_id);
+            $election_date = $election->voting_date;
             if ($election->status == 'pending') {
-                return view('pages.voting_not_started');
+                return view('pages.voting.voting_not_started', compact('election_date'));
             }
             elseif ($election->status == 'running') {
-                return view('pages.voting_started_page');
+                return view('pages.voting.voting_started_page');
             }
             else
             {
-                return view('pages.voting_completed_page');
+                return view('pages.voting.voting_completed_page');
             }
         } else {
             return response()->json('Wrong token!', '404');
