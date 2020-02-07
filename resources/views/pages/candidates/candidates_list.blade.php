@@ -43,6 +43,9 @@
                                     <th>
                                         {{ __('Description') }}
                                     </th>
+                                    <th>
+                                        {{ __('Election Id') }}
+                                    </th>
                                     <th class="text-right">
                                         {{ __('Actions') }}
                                     </th>
@@ -61,6 +64,9 @@
                                             </td>
                                             <td>
                                                 {{ $candidate->description }}
+                                            </td>
+                                            <td>
+                                                {{ $candidate->election_id }}
                                             </td>
                                             <td class="td-actions text-right">
                                                 @if ($candidate->id)

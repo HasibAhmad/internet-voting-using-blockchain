@@ -41,6 +41,9 @@
                                         {{ __('Public Key') }}
                                     </th>
                                     <th>
+                                        {{ __('Election Id') }}
+                                    </th>
+                                    <th>
                                         {{ __('Bitcoin Address') }}
                                     </th>
                                     <th>
@@ -59,10 +62,13 @@
                                             <td>
                                                 {{ $voter->email }}
                                             </td>
-                                            <td style=" width: 65em">
-                                                <p style="overflow-x: auto; white-space: nowrap; width: 65em">
+                                            <td style=" width: 40em">
+                                                <p style="overflow-x: auto; white-space: nowrap; width: 40em">
                                                     {{ $voter->public_key }}
                                                 </p>
+                                            </td>
+                                            <td>
+                                                {{ $voter->election_id }}
                                             </td>
                                             <td>
                                                 {{ $voter->bitcoin_address }}

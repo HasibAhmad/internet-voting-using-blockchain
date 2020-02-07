@@ -15,12 +15,12 @@ class VoterController extends Controller
     public function index(Voter $model)
     {
         $voters = Voter::all();
-        return view('pages.voters_list', compact('voters'));
+        return view('pages.voters.voters_list', compact('voters'));
     }
 
     public function create()
     {
-        return view('pages.voter_create');
+        return view('pages.voters.voter_create');
     }
 
 
@@ -28,6 +28,7 @@ class VoterController extends Controller
     {
         $voter->name = $request->name;
         $voter->email = $request->email;
+        $voter->election_id = $request->election_id;
 
         $rsa = new RSA();
         $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
@@ -56,7 +57,7 @@ class VoterController extends Controller
 
     public function edit(Voter $voter)
     {
-        return view('pages.voter_edit', compact('voter'));
+        return view('pages.voters.voter_edit', compact('voter'));
     }
 
     public function update(Request $request, Voter $voter)

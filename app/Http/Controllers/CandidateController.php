@@ -35,8 +35,7 @@ class CandidateController extends Controller
         $candidate->name = $request->get('name');;
         $candidate->email = $request->get('email');;
         $candidate->description = $request->get('description');;
-        $candidate->votes = $request->get('votes');
-        $candidate->save();
+        $candidate->update();
         return redirect()->route('candidate.index')->withStatus(__('Candidate successfully updated.'));
     }
 

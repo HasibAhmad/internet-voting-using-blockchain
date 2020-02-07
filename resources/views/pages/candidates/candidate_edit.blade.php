@@ -50,27 +50,27 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Votes') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('votes') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('votes') ? ' is-invalid' : '' }}" name="votes" id="input-name" type="text" placeholder="{{ __('votes') }}" value="{{ old('votes', $candidate->votes) }}" required="true" aria-required="true"/>
-                      @if ($errors->has('votes'))
-                        <span id="votes-error" class="error text-danger" for="input-name">{{ $errors->first('votes') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                    <div class="row">
-                        <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
-                        <div class="col-sm-7">
-                            <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                                <input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-description" type="text" placeholder="{{ __('description') }}" value="{{ old('description', $candidate->description) }}" required="true" aria-required="true"/>
-                                @if ($errors->has('description'))
-                                    <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
-                                @endif
-                            </div>
+                    <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
+                    <div class="col-sm-7">
+                        <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-description" type="text" placeholder="{{ __('description') }}" value="{{ old('description', $candidate->description) }}" required="true" aria-required="true"/>
+                            @if ($errors->has('description'))
+                                <span id="description-error" class="error text-danger" for="input-description">{{ $errors->first('description') }}</span>
+                            @endif
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">{{ __('Election Id') }}</label>
+                    <div class="col-sm-7">
+                        <div class="form-group{{ $errors->has('election_id') ? ' has-danger' : '' }}">
+                            <input class="form-control{{ $errors->has('election_id') ? ' is-invalid' : '' }}" name="election_id" id="input-name" type="text" placeholder="{{ __('election_id') }}" value="{{ old('election_id', $candidate->election_id) }}" required="true" aria-required="true"/>
+                            @if ($errors->has('election_id'))
+                                <span id="election_id-error" class="error text-danger" for="input-name">{{ $errors->first('election_id') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
