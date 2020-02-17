@@ -49,17 +49,28 @@
                           </div>
                         </div>
                       </div>
+{{--                      <div class="row">--}}
+{{--                        <label class="col-sm-2 col-form-label">{{ __('Election id') }}</label>--}}
+{{--                        <div class="col-sm-7">--}}
+{{--                          <div class="form-group{{ $errors->has('election_id') ? ' has-danger' : '' }}">--}}
+{{--                            <input type="number" class="form-control{{ $errors->has('election_id') ? ' is-invalid' : '' }}" name="election_id" id="input-election-id" type="text" placeholder="{{ __('Election Id') }}" required="true" aria-required="true"/>--}}
+{{--                            @if ($errors->has('election_id'))--}}
+{{--                              <span id="election-id-error" class="error text-danger" for="input-election-id">{{ $errors->first('election_id') }}</span>--}}
+{{--                            @endif--}}
+{{--                          </div>--}}
+{{--                         </div>--}}
+{{--                      </div>--}}
                       <div class="row">
-                        <label class="col-sm-2 col-form-label">{{ __('Election id') }}</label>
-                        <div class="col-sm-7">
-                          <div class="form-group{{ $errors->has('election_id') ? ' has-danger' : '' }}">
-                            <input type="number" class="form-control{{ $errors->has('election_id') ? ' is-invalid' : '' }}" name="election_id" id="input-election-id" type="text" placeholder="{{ __('Election Id') }}" required="true" aria-required="true"/>
-                            @if ($errors->has('election_id'))
-                              <span id="election-id-error" class="error text-danger" for="input-election-id">{{ $errors->first('election_id') }}</span>
-                            @endif
-                            </div>
+                          <label class="col-sm-2 col-form-label">{{ __('Election') }}</label>
+                          <div class="col-sm-7">
+                              <select class="form-control{{ $errors->has('election_name') ? ' is-invalid' : '' }}" name="election_id" id="input-election-id" type="text" data-style="btn btn-link"
+                                      id="exampleFormControlSelect1" required="true" aria-required="true">
+                                  @foreach($elections as $election)
+                                      <option value="{{$election->id}}">{{ $election->name }}</option>
+                                  @endforeach
+                              </select>
                           </div>
-                        </div>
+                      </div>
                       <div class="row">
                           <label class="col-sm-2 col-form-label">{{ __('Bitcoin Address') }}</label>
                           <div class="col-sm-7">

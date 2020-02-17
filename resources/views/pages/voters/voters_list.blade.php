@@ -41,7 +41,7 @@
                                         {{ __('Public Key') }}
                                     </th>
                                     <th>
-                                        {{ __('Election Id') }}
+                                        {{ __('Election') }}
                                     </th>
                                     <th>
                                         {{ __('Bitcoin Address') }}
@@ -68,7 +68,7 @@
                                                 </p>
                                             </td>
                                             <td>
-                                                {{ $voter->election_id }}
+                                                {{ $voter->election->name }}
                                             </td>
                                             <td>
                                                 {{ $voter->bitcoin_address }}
