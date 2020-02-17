@@ -38,7 +38,7 @@
                                         {{ __('Email') }}
                                     </th>
                                     <th>
-                                        {{ __('Votes') }}
+                                        {{ __('Photo') }}
                                     </th>
                                     <th>
                                         {{ __('Description') }}
@@ -60,7 +60,7 @@
                                                 {{ $candidate->email }}
                                             </td>
                                             <td>
-                                                {{ $candidate->votes }}
+                                                <img src="{{url( 'storage/'.$candidate->photo) }}" class="col-sm-4" style="height:100px;width:150px;padding-left: 0px !important;" alt="--">
                                             </td>
                                             <td>
                                                 {{ $candidate->description }}

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use phpseclib\Crypt\RSA;
 
 class GenerateKeysController extends Controller
