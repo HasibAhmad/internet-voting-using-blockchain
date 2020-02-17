@@ -12,10 +12,6 @@ class Candidate extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email',  'votes', 'description',
+        'name', 'email',  'photo', 'description', 'election_id',
     ];
-
-//    protected  $withCount = [
-//        'description',
-//    ];
 }

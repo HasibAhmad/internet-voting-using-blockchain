@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCandidatesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('candidates', function (Blueprint $table) {
@@ -18,16 +13,13 @@ class CreateCandidatesTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('description');
-            $table->bigInteger('votes');
+            $table->bigInteger('election_id')->unsigned();
+            $table->foreign('election_id')->references('id')->on('elections');
+            $table->string('photo');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('candidates');

@@ -96,7 +96,7 @@
       <li class="nav-item{{ $activePage == 'candidate' ? ' active' : '' }}">
           <a class="nav-link", href="/candidate">
               <i class="material-icons">people</i>
-               <p>{{ __('Cadidates') }}</p>
+               <p>{{ __('Candidates') }}</p>
           </a>
       </li>
       <li class="nav-item{{ $activePage == 'election' ? ' active' : '' }}">

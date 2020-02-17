@@ -50,12 +50,23 @@
                         </div>
                       </div>
                       <div class="row">
+                        <label class="col-sm-2 col-form-label">{{ __('Election id') }}</label>
+                        <div class="col-sm-7">
+                          <div class="form-group{{ $errors->has('election_id') ? ' has-danger' : '' }}">
+                            <input type="number" class="form-control{{ $errors->has('election_id') ? ' is-invalid' : '' }}" name="election_id" id="input-election-id" type="text" placeholder="{{ __('Election Id') }}" required="true" aria-required="true"/>
+                            @if ($errors->has('election_id'))
+                              <span id="election-id-error" class="error text-danger" for="input-election-id">{{ $errors->first('election_id') }}</span>
+                            @endif
+                            </div>
+                          </div>
+                        </div>
+                      <div class="row">
                           <label class="col-sm-2 col-form-label">{{ __('Bitcoin Address') }}</label>
                           <div class="col-sm-7">
                               <div class="form-group{{ $errors->has('bitcoin_address') ? ' has-danger' : '' }}">
-                                  <input class="form-control{{ $errors->has('bitcoin_address') ? ' is-invalid' : '' }}" name="bitcoin_address" id="input-bitcoin_address" type="text" placeholder="{{ __('Bitcoin Address') }}" required="true" aria-required="true"/>
+                                  <input class="form-control{{ $errors->has('bitcoin_address') ? ' is-invalid' : '' }}" name="bitcoin_address" id="input-bitcoin-address" type="text" placeholder="{{ __('Bitcoin Address') }}" required="true" aria-required="true"/>
                                   @if ($errors->has('bitcoin_address'))
-                                      <span id="bitcoin_address-error" class="error text-danger" for="input-bitcoin_address">{{ $errors->first('bitcoin_address') }}</span>
+                                      <span id="bitcoin-address-error" class="error text-danger" for="input-bitcoin_address">{{ $errors->first('bitcoin_address') }}</span>
                                   @endif
                               </div>
                           </div>

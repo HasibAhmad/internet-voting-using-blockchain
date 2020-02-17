@@ -6,17 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateVotersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('voters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->bigInteger('election_id')->unsigned();
+            $table->foreign('election_id')->references('id')->on('elections');
             $table->longText('private_key');
             $table->longText('public_key');
             $table->string('bitcoin_address');
@@ -27,11 +24,6 @@ class CreateVotersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('voters');

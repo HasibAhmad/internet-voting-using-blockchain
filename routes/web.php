@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get( 'voter/verify/{code}', 'VoterController@verify');
 
+//Route::get( 'generatekeys', 'GenerateKeysController@generate_keys');
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {

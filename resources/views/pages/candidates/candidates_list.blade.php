@@ -38,10 +38,13 @@
                                         {{ __('Email') }}
                                     </th>
                                     <th>
-                                        {{ __('Votes') }}
+                                        {{ __('Photo') }}
                                     </th>
                                     <th>
                                         {{ __('Description') }}
+                                    </th>
+                                    <th>
+                                        {{ __('Election Id') }}
                                     </th>
                                     <th class="text-right">
                                         {{ __('Actions') }}
@@ -57,10 +60,13 @@
                                                 {{ $candidate->email }}
                                             </td>
                                             <td>
-                                                {{ $candidate->votes }}
+                                                <img src="{{url( 'storage/'.$candidate->photo) }}" class="col-sm-4" style="height:100px;width:150px;padding-left: 0px !important;" alt="--">
                                             </td>
                                             <td>
                                                 {{ $candidate->description }}
+                                            </td>
+                                            <td>
+                                                {{ $candidate->election_id }}
                                             </td>
                                             <td class="td-actions text-right">
                                                 @if ($candidate->id)

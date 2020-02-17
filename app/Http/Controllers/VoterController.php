@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Candidate;
 use App\Election;
 use App\Mail\sendVoterConfirmation;
 use App\Voter;
@@ -15,12 +16,12 @@ class VoterController extends Controller
     public function index(Voter $model)
     {
         $voters = Voter::all();
-        return view('pages.voters_list', compact('voters'));
+        return view('pages.voters.voters_list', compact('voters'));
     }
 
     public function create()
     {
-        return view('pages.voter_create');
+        return view('pages.voters.voter_create');
     }
 
 
@@ -28,15 +29,9 @@ class VoterController extends Controller
     {
         $voter->name = $request->name;
         $voter->email = $request->email;
+        $voter->election_id = $request->election_id;
 
-        $rsa = new RSA();
-        $rsa->setPrivateKeyFormat(RSA::PRIVATE_FORMAT_PKCS1);
-        $rsa->setPublicKeyFormat(RSA::PUBLIC_FORMAT_PKCS1);
-        $rsa->setHash('sha256');
-        $rsa->setComment('ivub');
-        $key_pair = $rsa->createKey(1024);
-//        $fingerprint = $rsa->loadKey($privateKey);
-//        $keyFingerprint = $rsa->getPublicKeyFingerprint();
+        $key_pair = GenerateKeysController::generate_keys();
         $voter->private_key = $key_pair["privatekey"];
         $voter->public_key = $key_pair["publickey"];
 
@@ -56,16 +51,13 @@ class VoterController extends Controller
 
     public function edit(Voter $voter)
     {
-        return view('pages.voter_edit', compact('voter'));
+        return view('pages.voters.voter_edit', compact('voter'));
     }
 
     public function update(Request $request, Voter $voter)
     {
         $voter->name = $request->get('name');
         $voter->email = $request->get('email');
-//        $voter->private_key = $request->get('private_key');
-//        $voter->private_key = 'default';
-//        $voter->public_key = $request->get('public_key');
         $voter->bitcoin_address = $request->get('bitcoin_address');
         $voter->network = $request->get('network');
         $voter->save();
@@ -81,19 +73,36 @@ class VoterController extends Controller
     public function verify($code)
     {
         $voter = Voter::where('verify_token', '=', $code)->first();
+        $voter_private_key = $voter->private_key;
+        $voter_public_key = $voter->public_key;
         if ($voter) {
             $voter->verified = true;
             $voter->save();
-            $election = Election::find(2);
+            $election_id = $voter->election_id;
+            $election = Election::find($election_id);
+            $election_date = $election->voting_date;
+            $candidates = Candidate::all()->where('election_id', $election_id);
             if ($election->status == 'pending') {
-                return view('pages.voting_not_started');
+                return view('pages.voting.voting_not_started',
+                    [
+                        'election_date' => $election_date,
+                        'voter_private_key' => $voter_private_key,
+                        'voter_public_key' => $voter_public_key
+                    ]);
             }
             elseif ($election->status == 'running') {
-                return view('pages.voting_started_page');
+                return view('pages.voting.voting_started_page',
+                    [
+                        'election_date' => $election_date,
+                        'voter_private_key' => $voter_private_key,
+                        'voter_public_key' => $voter_public_key,
+                        'candidates' => $candidates
+                    ]
+                );
             }
             else
             {
-                return view('pages.voting_completed_page');
+                return view('pages.voting.voting_completed_page');
             }
         } else {
             return response()->json('Wrong token!', '404');

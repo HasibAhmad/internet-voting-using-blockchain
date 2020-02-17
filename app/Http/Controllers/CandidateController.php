@@ -21,7 +21,18 @@ class CandidateController extends Controller
 
     public function store(Request $request, Candidate $candidate)
     {
-        $candidate->create($request->all());
+//        $candidate->create($request->all());
+        $candidate->name = $request->name;
+        $candidate->email = $request->email;
+        $candidate->description = $request->description;
+        $candidate->election_id = $request->election_id;
+        if (isset($request->photo)) {
+            $photo = $request->photo;
+            $name = $photo->getClientOriginalName();
+            $filename = $photo->store('uploads', 'public');
+        }
+        $candidate->photo = $filename;
+        $candidate->save();
         return redirect()->route('candidate.index')->withStatus(__('Candidate successfully created.'));
     }
 
@@ -34,9 +45,14 @@ class CandidateController extends Controller
     {
         $candidate->name = $request->get('name');;
         $candidate->email = $request->get('email');;
-        $candidate->description = $request->get('description');;
-        $candidate->votes = $request->get('votes');
-        $candidate->save();
+        $candidate->description = $request->get('description');
+        if (isset($request->photo)) {
+            $photo = $request->photo;
+            $name = $photo->getClientOriginalName();
+            $filename = $photo->store('uploads', 'public');
+        }
+        $candidate->photo = $filename;
+        $candidate->update();
         return redirect()->route('candidate.index')->withStatus(__('Candidate successfully updated.'));
     }
 
