@@ -69,7 +69,7 @@
                                                         @csrf
                                                         @method('delete')
 
-                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('startElection', $election) }}" data-original-title="start election" title="">
+                                                        <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('startElection', $election) }}" data-original-title="{{(($election->status == 'running') ? 'stop election': ($election->status == 'pending' ? 'start election' : 'restart election'))}}" title="">
                                                             <i class="material-icons">settings_power</i>
                                                             <div class="ripple-container"></div>
                                                         </a>

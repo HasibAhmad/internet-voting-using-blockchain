@@ -21,16 +21,17 @@ class VoterController extends Controller
 
     public function create()
     {
-        return view('pages.voters.voter_create');
+        $elections = Election::all();
+        return view('pages.voters.voter_create', compact('elections'));
     }
 
 
     public function store(Request $request, Voter $voter)
     {
+
         $voter->name = $request->name;
         $voter->email = $request->email;
         $voter->election_id = $request->election_id;
-
         $key_pair = GenerateKeysController::generate_keys();
         $voter->private_key = $key_pair["privatekey"];
         $voter->public_key = $key_pair["publickey"];
